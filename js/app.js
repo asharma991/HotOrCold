@@ -1,24 +1,3 @@
-function handleInstructionsModal() {
-  // when users click on the element with
-  // `.js-what` class, we'll fade in
-  // the instructions modal
-  $(".js-what").click(function () {
-    $(".overlay").fadeIn(1000);
-  });
-
-  // when users click on the element with the
-  // `.js-close` class, we'll fade out
-  // the instructions modal
-  $(".js-close").click(function () {
-    $(".overlay").fadeOut(1000);
-  });
-}
-
-// `$(document).ready` lets you specify a
-// function that should execute when all the
-// resources required by your web page have loaded.
-// This code says, when the document is ready, run the
-// `handleInstructionsModal` function.
 $(document).ready(function () {
   //Variable Declarations
   var secretNumber = getRandomIntInclusive(1, 100);
@@ -28,6 +7,10 @@ $(document).ready(function () {
   var guessedByUser = 0;
   var diffPrev = 0;
   var inputList = [];
+
+  //Starting new game in the beginning
+  newGame();
+
   //Handles the form submit
   $("form").on("submit", function (event) {
     event.preventDefault();
@@ -52,7 +35,7 @@ $(document).ready(function () {
     $(".text").val("");
   });
 
-  //Starts new game
+  //Starts new game on click
   $(".js-new-game").on("click", function (event) {
     event.preventDefault();
     newGame();
@@ -69,8 +52,15 @@ $(document).ready(function () {
     $(".text").val("");
   }
 
-  //For instruction modal fade in and out
-  handleInstructionsModal();
+  //For instruction modal fade in
+  $(".js-what").click(function () {
+    $(".overlay").fadeIn(1000);
+  });
+
+  //For instruction modal fade out
+  $(".js-close").click(function () {
+    $(".overlay").fadeOut(1000);
+  });
 
   //Gets random secret number to be guessed
   function getRandomIntInclusive(min, max) {
